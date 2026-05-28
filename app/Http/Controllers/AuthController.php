@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('auth.login');
@@ -19,51 +19,45 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function authenticate(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if(Auth::attempt($validation))
+        {
+            $request->session()->regenerate();
+
+            Alert::success('SELAMAT', 'Anda Berhasil Login');
+            return redirect()->route('dashboard');
+        }
+        return back()->withErrors([
+            'email' => 'Email/Password Anda Salah!'
+        ])->onlyInput('email');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function regis(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:3'
+        ]);
+
+        User::create($data);  
+
+        Alert::success('SELAMAT', 'Anda Berhasil Regis')->autoClose(1000);
+        return redirect()->route('login');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function logout(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        Alert::success('SELAMAT', 'Anda Berhasil Logout');
+        return redirect()->route('login');
     }
 }
