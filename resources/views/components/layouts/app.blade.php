@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Cafe App' }}</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     {{ $slot ?? '' }}
+    @include('sweetalert::alert')
 
 </body>
 </html>

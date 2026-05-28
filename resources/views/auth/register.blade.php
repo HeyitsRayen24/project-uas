@@ -31,16 +31,22 @@
                         Daftar untuk menikmati layanan kami.
                     </p>
 
-                    <form>
-
+                    <form action="{{ route('auth.register') }}" method="post">
+                        @csrf
                         <div class="mb-4">
 
                             <label class="form-label">
                                 Full Name
                             </label>
 
-                            <input type="text" class="form-control custom-input">
-
+                            <input type="text" name="name" class="form-control @error('name')
+                                is-invalid
+                            @enderror custom-input" value="{{ old('name') }}">
+                            @error('name')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
@@ -49,8 +55,14 @@
                                 Email
                             </label>
 
-                            <input type="email" class="form-control custom-input">
-
+                            <input type="email" name="email" class="form-control @error('email')
+                                is-invalid
+                            @enderror custom-input" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
@@ -59,11 +71,17 @@
                                 Password
                             </label>
 
-                            <input type="password" class="form-control custom-input">
-
+                            <input type="password" name="password" class="form-control @error('password')
+                                is-invalid
+                            @enderror custom-input">
+                            @error('password')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
-                        <button class="btn btn-custom w-100 py-3">
+                        <button type="submit" class="btn btn-custom w-100 py-3">
                             Register
                         </button>
 
@@ -83,6 +101,7 @@
     </div>
 
 </section>
+@include('sweetalert::alert')
 
 </body>
 </html>
