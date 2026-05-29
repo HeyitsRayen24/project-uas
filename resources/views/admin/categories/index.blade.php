@@ -47,33 +47,37 @@
                 </thead>
 
                 <tbody>
-
+                    @forelse ($categories as $category)
                     <tr>
-                        <td>1</td>
+                        <td>{{ $loop->iteration }}</td>
 
                         <td class="fw-semibold">
-                            #HMD-2048
+                            {{ $category->code }}
                         </td>
 
-                        <td>Sarah Ahmed</td>
+                        <td>{{ $category->name }}</td>
 
                         <td>
                             <div class="d-flex justify-content-center gap-2">
 
-                                <a href="" class="btn btn-sm btn-primary">
+                                <a href="{{  route('category.show', $category)  }}" class="btn btn-sm btn-primary">
                                     <i class="bi bi-eye"></i>
                                     Detail
                                 </a>
                                 
-                                <a href="" class="btn btn-sm btn-warning">
+                                <a href="{{ route('category.edit', $category) }}" class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil-square"></i>
                                     Edit
                                 </a>
 
-                                <a href="" class="btn btn-sm btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                    Delete
-                                </a>
+                                <form action="{{ route('category.destroy', $category) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" data-delete>
+                                        <i class="bi bi-trash"></i>
+                                        Delete
+                                    </button>
+                                </form>
 
                                 {{-- <button class="btn btn-sm btn-warning"
                                         type="button">
@@ -90,37 +94,13 @@
                             </div>
                         </td>
                     </tr>
+                        
+                    @empty
+                    <td class="text-center text-sm text-gray-900 px-6 py-4 whitespace-nowrap" colspan="6">
+                        Data Empty
+                    </td>    
+                    @endforelse
 
-                    <tr>
-                        <td>2</td>
-
-                        <td class="fw-semibold">
-                            #HMD-2047
-                        </td>
-
-                        <td>Rafi Khan</td>
-
-                        <td>
-                            <div class="d-flex justify-content-center gap-2">
-
-                                <a href="" class="btn btn-sm btn-primary">
-                                    <i class="bi bi-eye"></i>
-                                    Detail
-                                </a>
-                                
-                                <a href="" class="btn btn-sm btn-warning">
-                                    <i class="bi bi-pencil-square"></i>
-                                    Edit
-                                </a>
-
-                                <a href="" class="btn btn-sm btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                    Delete
-                                </a>
-
-                            </div>
-                        </td>
-                    </tr>
 
                 </tbody>
             </table>

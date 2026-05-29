@@ -35,6 +35,34 @@
 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+
+                if(form.querySelector('[data-delete]')){
+
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Delete Category?',
+                        text: "Data cannot be restored!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+
+                        if(result.isConfirmed){
+                            form.submit();
+                        }
+
+                    });
+
+                }
+
+            });
+        });
+    </script>
     @include('sweetalert::alert')
 </body>
 

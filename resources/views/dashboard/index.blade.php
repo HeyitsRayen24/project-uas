@@ -14,11 +14,11 @@
                     <span class="metric-label">Category</span>
                     <span class="metric-icon"><i class="bi bi-tags-fill" aria-hidden="true"></i></span>
                 </div>
-                <div class="metric-value">$48,240</div>
+                <div class="metric-value">{{ $count }}</div>
             </article>
         </div>
 
-        <div class="col-12 col-sm-6 col-xl-3">
+        {{-- <div class="col-12 col-sm-6 col-xl-3">
             <article class="metric-card metric-success">
                 <div class="metric-top">
                     <span class="metric-label">Product</span>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="metric-value">1,284</div>
             </article>
-        </div>
+        </div> --}}
 
         {{-- <div class="col-12 col-sm-6 col-xl-3">
             <article class="metric-card metric-warning">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,8 +13,8 @@ class DashboardController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        $icon = 'bi bi-speedometer2';
-        return view('dashboard.index', compact('title', 'icon'));
+        $count = Category::count();
+        return view('dashboard.index', compact('title', 'count'));
     }
 
     public function showTableProduct()

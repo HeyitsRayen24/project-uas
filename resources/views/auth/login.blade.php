@@ -41,7 +41,7 @@
 
                             <input type="email" name="email" class="form-control @error('email')
                                 is-invalid
-                            @enderror custom-input">
+                            @enderror custom-input" value="{{ old('email') }}">
                             @error('email')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}

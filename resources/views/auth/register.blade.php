@@ -89,7 +89,7 @@
 
                     <p class="auth-footer">
                         Sudah punya akun?
-                        <a href="login.html">Login</a>
+                        <a href="{{ route('login') }}">Login</a>
                     </p>
 
                 </div>

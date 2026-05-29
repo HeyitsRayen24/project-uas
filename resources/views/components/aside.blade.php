@@ -14,14 +14,14 @@
             <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
             <span class="nav-text">Dashboard</span>
         </a>
-        <a class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}" href="{{ route('category') }}">
+        <a class="nav-link {{ request()->routeIs('category.*') ? 'active' : '' }}" href="{{ route('category.index') }}">
             <span class="nav-icon"><i class="bi bi-tags-fill" aria-hidden="true"></i></span>
             <span class="nav-text">Category</span>
         </a>
-        <a class="nav-link {{ request()->routeIs('product') ? 'active' : '' }}" href="{{ route('product') }}">
+        {{-- <a class="nav-link {{ request()->routeIs('product*') ? 'active' : '' }}" href="{{ route('product') }}">
             <span class="nav-icon"><i class="bi bi-cart-check-fill" aria-hidden="true"></i></span>
             <span class="nav-text">Product</span>
-        </a>
+        </a> --}}
     </nav>
 
     <div class="sidebar-footer">

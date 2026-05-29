@@ -19,7 +19,7 @@
 <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
     <div class="container">
 
-        <a class="navbar-brand logo" href="#">
+        <a class="navbar-brand logo" href="{{ '/' }}">
             BrewNest
         </a>
 
@@ -32,19 +32,15 @@
             <ul class="navbar-nav mx-auto gap-lg-4 text-center">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="#home">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Menu</a>
+                    <a class="nav-link" href="#menu">Menu</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#about">About</a>
                 </li>
 
             </ul>
@@ -67,7 +63,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero-section">
+<section class="hero-section" id="home">
 
     <div class="container">
 
@@ -132,7 +128,7 @@
 </section>
 
 <!-- FEATURED -->
-<section class="featured-section">
+<section class="featured-section" id="menu">
 
     <div class="container">
 
@@ -257,7 +253,7 @@
 </section>
 
 <!-- WHY US -->
-<section class="why-section">
+<section class="why-section" id="about">
 
     <div class="container">
 
@@ -365,6 +361,7 @@
     </div>
 
 </footer>
+@include('sweetalert::alert')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
